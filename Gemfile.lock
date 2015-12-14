@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:rclements/xrono.git
+  remote: git://github.com/rclements/xrono.git
   revision: 992ffda7f0212cdebc2ca5dfd5819d2d5392500d
   specs:
     xrono (1.0.12)
