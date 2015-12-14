@@ -1,0 +1,25 @@
+= render 'breadcrumbs'
+
+- if (@work_unit.user == current_user) || admin?
+  %ul.nav.nav-pills
+    %li= link_to bootstrap_icon('edit') + t(:edit_work_unit), edit_work_unit_path, :class => 'btn'
+
+#work_unit
+  %h3= t(:creator)
+  %p= @work_unit.user
+  %h3= t(:hours)
+  %p= @work_unit.hours
+  %h3= t(:hours_type)
+  %p= @work_unit.hours_type
+  %h3= t(:description)
+  %p.description= @work_unit.description
+  %h3= t(:invoice)
+  - if admin?
+    %p= link_to @work_unit.invoiced, work_units_path(:invoiced => @work_unit.invoiced) unless @work_unit.invoiced.nil?
+  - else
+    %p= @work_unit.invoiced
+  %h3= t(:payroll)
+  - if admin?
+    %p= link_to @work_unit.paid, work_units_path(:paid => @work_unit.paid) unless @work_unit.paid.nil?
+  - else
+    %p= @work_unit.paid

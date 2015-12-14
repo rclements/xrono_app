@@ -1,0 +1,437 @@
+@import "bootstrap_and_overrides";
+@import "chosen";
+@import "css3-progress-bar";
+@import "compass";
+@import "jquery.dataTables";
+@import "compass/css3";
+
+//** SCREEN STYLES **//
+a {
+  outline:none;
+}
+
+table {
+  font-size: 1em;
+  margin-top: 10px;
+}
+fieldset {
+  padding-top: 10px;
+}
+.calendar{
+  table{
+    td{
+      overflow: hidden;
+    }
+    tfoot{
+      td{
+      }
+    }
+    tbody {
+      tr {
+        td {
+          ul {
+             li {
+              a {
+                font-size: .9em;
+              }
+             }
+          }
+        }
+      }
+    }
+  }
+  .work_unit {
+    .description {
+      display: none;
+      font-size: .8em;
+    }
+  }
+}
+.btn-group {
+  display:inline-block;
+}
+#add_ticket, #new_work_unit {
+  .actions {
+    input {
+      float:right;
+      margin: 0 118px 0 0;
+    }
+  }
+  .field_row {
+    width: 100%;
+    margin: 0 0 10px 0;
+    label.hidden_clients {
+      width: auto;
+      margin: 0 0 0 10px;
+    }
+    label {
+      display: inline-block;
+      width: 115px;
+      margin: 0 5px 0 0;
+      text-align:right;
+      vertical-align: top;
+    }
+    .input.left {
+      margin-left:100px;
+    }
+    .input {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+}
+.work_unit{
+  &.overtime, &.overtime a {
+    color: #C43C35;
+  }
+  &.cto, &.cto a {
+    color: #F89406;
+  }
+  &.pto, &.pto a {
+    color: #46A546;
+  }
+}
+
+input {
+  height: 26px;
+  line-height: auto;
+}
+table.invoice {
+  td.totals {
+    width: 100%;
+    textarea {
+      width:100%;
+    }
+  }
+}
+body div.container-fluid div.row div.span16 div input#global_invoiced {
+  float:right;
+}
+
+body div.container-fluid div.row div.span16 div form table.invoice tfoot tr td textarea {
+  width:100%;
+}
+div.navbar div.fill div.container-fluid ul.nav {
+  margin: 10px 10px 0 0;
+  li {
+    a {
+      color:#fff;
+    }
+  }
+}
+
+.navbar{
+  @include box-shadow(0 0 5px #ccc);
+  .primary-nav{
+    li{
+      a{
+        @include border-radius(8px);
+        &:hover {
+          background-color: #75959d;
+        }
+        margin-left: 2px;
+        margin-right: 2px;
+      }
+    }
+    li.selected{
+      a{
+        background-color: #5d7a82;
+        color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.024) inset;
+      }
+    }
+  }
+  .fill .container-fluid {
+    ul.pull-right{
+      li.dropdown{
+        a.dropdown-toggle{
+          padding: 0 4px 0 0;
+        }
+        span{
+          position: relative;
+          top: -10px;
+          padding: 4px;
+        }
+        b.caret{
+          position: relative;
+          top: 4px;
+        }
+      }
+    }
+    li.dropdown{
+      ul.dropdown-menu{
+        li{
+          a{
+            color: #75959d;
+            &:hover {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar-fixed-top{
+  a{
+    color: #ddd;
+  }
+  .fill{
+    padding: 6px 0;
+    @include background-image(linear-gradient(color-stops(#75959d, #698891 30%,#5d7a82 100%)));
+  }
+}
+
+tfoot{
+  border-top: 2px solid #bbb;
+}
+
+h3 {
+  margin: 10px 0 5px 0;
+}
+.right {
+  float:right;
+}
+.topbar{
+  .brand{
+    padding: 0;
+  }
+}
+
+.week_pagination{
+  border-bottom:1px solid #eee;
+  .date_pagination{
+    .span.center{
+      text-align: center;
+    }
+    .span.first{
+      text-align: left;
+      float:left;
+    }
+    .span.last{
+      text-align: right;
+      float:right;
+    }
+    a{
+      display: inline-block;
+      padding: 1em;
+    }
+  }
+}
+
+.module{
+  background-color: #f9f9f9;
+  @include border-radius(8px);
+  padding: 8px;
+  form{
+    margin-bottom: 0;
+    fieldset{
+      margin-bottom: 0;
+      .actions{
+        margin-bottom: -8px;
+        margin-right: -8px;
+        margin-left: -8px;
+        @include border-radius(0 0 8px 8px);
+      }
+    }
+  }
+}
+
+#schedule_modal_link{
+  position: relative;
+  top: 0;
+}
+
+body div.container-fluid div.row div.span16 p.ticket_metrics {
+  text-align:center;
+}
+
+.normal {
+  color: #808080;
+}
+
+.pto {
+  color: #46A546;
+}
+
+.overtime {
+  color: #C43C35;
+}
+
+.cto {
+  color: #F89406;
+}
+legend {
+  -webkit-margin-top-collapse: separate;
+
+}
+.form-actions {
+  background-color:#fff;
+  @include background-image(linear-gradient(#fafafa #fff));
+}
+.login_form {
+  display:block;
+  margin-top:10px;
+  label {
+    display:inline-block;
+    width: 65px;
+    text-align:right;
+    padding-right: 10px;
+    vertical-align:top;
+  }
+  .input {
+    display:inline-block;
+    vertical-align:middle;
+  }
+  .remember {
+    input {
+      margin: 0 4px 0 77px;
+    }
+    label {
+      width: auto;
+      padding-top: 2px;
+    }
+  }
+  .btn {
+    margin: 7px 0 0 77px;
+  }
+}
+
+.indent{
+  margin-left: 20px;
+  color: #3A87AD;
+}
+
+.credit{
+  color: #638847;
+}
+
+.debit{
+  color: #B94A48;
+}
+
+.yellow{
+  color: #C09853;
+}
+
+
+.benefit_box, .benefit_box2{
+  display: inline-block;
+  margin: 20px;
+  color: white;
+  background: white;
+  width: 100px;
+  vertical-align: top;
+  .benefit_display{
+    border: gray 1px solid;
+    .title{
+      padding: 5px 0px;
+      background: #246e7d;
+      color: white;
+      margin: 2px 2px 0px 2px;
+    }
+    .value{
+      padding: 30px 0px;
+      font-size: 25px;
+      background: #2CAAC3;
+      margin: 0px 2px;
+      border-bottom: 2px white solid;
+    }
+  }
+}
+
+.benefit_box2{
+  width: 200px;
+}
+
+.date{
+  margin-top: 50px;
+}
+
+#graph{
+  border-bottom: 1px black solid;
+  min-width: 400px;
+  height: 400px;
+  margin: 0 auto;
+}
+/**************************************************************************************************************************************/
+/*                                             Active Project List Styles on the Home Page                                            */
+/**************************************************************************************************************************************/
+.span12.calendar_container{
+  margin-left: 0;
+  padding-left: 30px;
+  border-left: 1px solid #eee;
+}
+.progress_container{
+  margin-left: 0;
+  //@include background-image(linear-gradient(#fafafa #fff));
+  background-color: #f00;
+
+  .week_pagination{
+    margin-bottom: .6em;
+  }
+  h4{
+    font-weight: 300;
+    font-size: .95em;
+    margin-bottom: .6em;
+  }
+}
+ul.progress_notifier{
+  margin: 0;
+  padding: o;
+  list-style-type: none;
+  li{
+    &:after{
+      display: block;
+      content: "";
+      clear: both;
+    }
+  }
+}
+
+.bar_container{
+  height: 5px !important;
+  padding: 2px;
+  .bar_mortice{
+    height: 5px;
+    .progress{
+      height: 4px;
+    }
+  }
+}
+
+.work-unit-table_wrapper{
+  label, label > select{
+    display: inline;
+  }
+}
+table.work-hours-table{
+  overflow: hidden;
+  th{
+    cursor: pointer;
+    .filter_column.filter_date_range, .filter_column.filter_date_range > *{
+      display: inline;
+      text-transform: capitalize;
+    }
+    .filter_date_range{
+      position: absolute;
+      left: 0;
+      top:57px;
+      @media(max-width:767px) {
+        position: static;
+      }
+    }
+    &:before{
+      display: block;
+      content: " ";
+    }
+  }
+  .description{
+    max-width: 300px;
+  }
+}
+
+
+@import "responsive";
+

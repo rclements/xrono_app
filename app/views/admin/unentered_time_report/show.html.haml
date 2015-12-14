@@ -1,0 +1,16 @@
+%h2= t(:users_with_no_time_entered)
+
+= render 'admin/nav'
+
+= render 'week_navigation'
+
+- @week_dates.each do |weekday, date|
+  %div{:id => weekday}
+    %h3= "#{weekday}, #{date.to_formatted_s(:long_ordinal)}"
+    %b= hours_entered_for_day(date).to_s + " hours entered."
+    - if date.past?
+      %table.table.table-striped.table-bordered
+        - @users.each do |user|
+          - unless user.work_units_for_day(date).any?
+            %tr
+              %td= link_to user, user_path(user)

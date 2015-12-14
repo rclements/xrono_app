@@ -1,0 +1,34 @@
+= render 'breadcrumbs'
+
+.btn-group
+  = link_to 'View Contacts', client_contacts_path(@client), :class => 'btn'
+  - if admin?
+    = link_to bootstrap_icon('edit') + 'Edit Client', edit_client_path, :class => 'btn'
+    = link_to bootstrap_icon('plus') + 'New Project', new_project_path(:client => @client), :class => 'btn'
+
+%ul.nav.nav-tabs{"data-tabs" => "tabs"}
+  %li.active= link_to "Incompleted Projects", "#incompleted_projects"
+  %li= link_to "Completed Projects", "#completed_projects"
+  %li= link_to "Data Vault", "#data_vault"
+  %li= link_to "Work Units", "#work_unit_index"
+  %li= link_to "Comments and Files", "#comments" unless client?
+
+.tab-content
+  #incompleted_projects.tab-pane.active
+    = render "projects", :projects => @incompleted_projects
+  #completed_projects.tab-pane
+    = render "projects", :projects => @completed_projects
+  #data_vault.tab-pane
+    = render "shared/data_vault", :data_vault => @client.data_vault
+  #work_unit_index.tab-pane
+    = render "shared/work_unit_index", :work_units => @work_units, show_ticket: true, show_project:true
+  - unless client?
+    #comments.tab-pane
+      = render "shared/files_and_comments", :items => @client.files_and_comments.reverse, :id => 'client'
+
+- content_for :javascripts do
+  = javascript_include_tag "bootstrap-tabs"
+  :javascript
+    $(function() {
+      $('.tabs').tabs();
+    });

@@ -1,0 +1,48 @@
+- if @work_unit.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@work_unit.errors.count, "error")
+      = "#{t(:prohibited_this_work_unit_from_being_saved)}:"
+    %ul
+      - @work_unit.errors.full_messages.each do |msg|
+        %li= msg
+
+.control-group
+  %label.control-label= t(:scheduled_on)
+  .controls
+    = link_to @work_unit.scheduled_at.to_date, "#", :id => "schedule_modal_link"
+
+#schedule_modal
+  %p= t(:enter_work_units_on_completion_day)
+  .control-group
+    %label.control-label= t(:scheduled_at)
+    .controls
+      = text_field_tag :scheduled_at, @work_unit.scheduled_at
+
+- unless @work_unit.ticket.present?
+  .control-group
+    %label.control-label= t(:ticket)
+    .controls
+      = f.select :ticket_id, options_from_collection_for_select(@project.tickets.incomplete, :id, :name)
+
+
+.control-group
+  = f.label :hours_type, :class => 'control-label'
+  .controls
+    = f.select :hours_type, ['Normal', 'Overtime', 'CTO', 'PTO']
+
+.control-group
+  = f.label :hours, :class => 'control-label'
+  .controls
+    = f.text_field :hours
+
+.control-group
+  = f.label :description, :class => 'control-label'
+  .controls
+    = f.text_area :description, :class => 'xxlarge', :rows => 5
+
+.form-actions
+  = f.hidden_field :scheduled_at, value: Date.current
+  -if @work_unit.ticket.present?
+    = f.hidden_field :ticket_id, value: @work_unit.ticket.id
+  = f.submit :class => 'btn primary'
